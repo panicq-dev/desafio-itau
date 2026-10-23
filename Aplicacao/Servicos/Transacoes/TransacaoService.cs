@@ -1,19 +1,33 @@
 using desafio_itau.Domain._Models;
-namespace desafio_itau.Aplicacao.Servicos
-{
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.ComponentModel.DataAnnotations;
+namespace desafio_itau.Aplicacao.Servicos.Transacoes;
+
     public class TransacaoService : ITransacaoService
     {
         private List<Transacao> transacoes = new List<Transacao>();
         
-        public Estatistica Transferir(Transacao transacao)
+    public bool Transferir(Transacao transacao)
+    {
+        try
         {
+            
+            Validator.ValidateObject(transacao, new ValidationContext(transacao), validateAllProperties: true);
+            
             if (transacao.DataHora > DateTime.Now)
             {
-                throw new ArgumentException("Data e hora não devem ser futuras.");        
+                return false; 
             }
+
             transacoes.Add(transacao);
-            return new Estatistica();
+            return true; 
         }
+        catch (ValidationException)
+        {
+            return false;
+        }
+    }
 
         public void DeletarTransacao(Transacao transacao)
         {
@@ -24,4 +38,3 @@ namespace desafio_itau.Aplicacao.Servicos
             transacoes.Remove(transacao);
         }
     }
-}

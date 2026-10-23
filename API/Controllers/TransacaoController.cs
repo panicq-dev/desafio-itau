@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using desafio_itau.Aplicacao.Servicos;
+using desafio_itau.Aplicacao.Servicos.Transacoes;
 using desafio_itau.Domain._Models;
 namespace desafio_itau.API.Controllers;
 
@@ -17,10 +17,7 @@ public class TransacaoController : ControllerBase
     [HttpPost("transacao")]
     public IActionResult RealizarTransacao([FromBody] Transacao transacao)
     {
-        if (!ModelState.IsValid)
-        {
-            return UnprocessableEntity(ModelState);
-        }
+        
         _transacaoService.Transferir(transacao);
         return CreatedAtAction(nameof(RealizarTransacao), transacao);
     }

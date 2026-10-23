@@ -1,7 +1,16 @@
+using Microsoft.AspNetCore.Mvc;
+using desafio_itau.Domain._Models;
 namespace desafio_itau.API.Controllers
 {
-    public class EstatisticaController
+    [ApiController]
+    [Route("[controller]")]
+    public class EstatisticaController : ControllerBase
     {
-        
+        [HttpGet("estatistica")]
+        public ActionResult<Estatistica> ObterEstatistica()
+        {
+            
+            return Ok(new Estatistica());
+        }
     }
 }
