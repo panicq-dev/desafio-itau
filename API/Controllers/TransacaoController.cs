@@ -13,5 +13,10 @@ public class TransacaoController : ControllerBase
         return new Estatistica();
     }
 
+    [HttpDelete("transacao")]
+    public void DeletarTransacao([FromBody] Transacao transacao)
+    {
+        
+    }
 
 }
