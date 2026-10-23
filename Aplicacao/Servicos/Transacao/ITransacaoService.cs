@@ -2,5 +2,6 @@ using desafio_itau.Domain._Models;
 namespace desafio_itau.Aplicacao.Servicos;
 public interface ITransacaoService
 {
-    public Estatistica Transferir(Transacao transacao);        
+    public void Transferir(Transacao transacao);
+    public void DeletarTransacao(Transacao transacao);        
 }

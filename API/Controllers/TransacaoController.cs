@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using desafio_itau.Aplicacao.Servicos;
 using desafio_itau.Domain._Models;
 namespace desafio_itau.API.Controllers;
 
@@ -6,17 +7,30 @@ namespace desafio_itau.API.Controllers;
 [Route("[controller]")]
 public class TransacaoController : ControllerBase
 {
-    [HttpPost("transacao")]
-    public Estatistica RealizarTransacao([FromBody] Transacao transacao)
+    private readonly ITransacaoService _transacaoService;
+    public TransacaoController(ITransacaoService transacaoService)
     {
-        
-        return new Estatistica();
+        _transacaoService = transacaoService;
     }
 
-    [HttpDelete("transacao")]
-    public void DeletarTransacao([FromBody] Transacao transacao)
+
+    [HttpPost("transacao")]
+    public IActionResult RealizarTransacao([FromBody] Transacao transacao)
     {
-        
+        if (!ModelState.IsValid)
+        {
+            return UnprocessableEntity(ModelState);
+        }
+        _transacaoService.Transferir(transacao);
+        return CreatedAtAction(nameof(RealizarTransacao), transacao);
+    }
+
+
+    [HttpDelete("transacao")]
+    public IActionResult DeletarTransacao([FromBody] Transacao transacao)
+    {
+        _transacaoService.DeletarTransacao(transacao);
+        return Ok();
     }
 
 }
