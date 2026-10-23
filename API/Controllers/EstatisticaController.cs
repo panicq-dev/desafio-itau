@@ -7,7 +7,7 @@ namespace desafio_itau.API.Controllers
     public class EstatisticaController : ControllerBase
     {
         [HttpGet("estatistica")]
-        public ActionResult<Estatistica> ObterEstatistica()
+        public ActionResult<Estatistica> ObterEstatistica(List<Transacao> transacoes)
         {
             
             return Ok(new Estatistica());

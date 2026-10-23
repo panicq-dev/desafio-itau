@@ -18,14 +18,17 @@ public class TransacaoController : ControllerBase
     public IActionResult RealizarTransacao([FromBody] Transacao transacao)
     {
         
-        _transacaoService.Transferir(transacao);
-        return CreatedAtAction(nameof(RealizarTransacao), transacao);
+        var transferencia = _transacaoService.Transferir(transacao);
+        if (!transferencia) return UnprocessableEntity("Por favor, insira um objeto válido."); // Erro 422.
+        if (transacao is null) return BadRequest("O valor está nulo. Por favor, informar valores necessários."); // Erro 400
+        return CreatedAtAction(nameof(RealizarTransacao), transacao); // Status 201 Created
     }
 
 
     [HttpDelete("transacao")]
     public IActionResult DeletarTransacao([FromBody] Transacao transacao)
     {
+        if (transacao is null) return BadRequest("O valor está nulo. Por favor, informar valores necessários.");
         _transacaoService.DeletarTransacao(transacao);
         return Ok();
     }
