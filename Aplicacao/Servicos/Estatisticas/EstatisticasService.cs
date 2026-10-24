@@ -14,7 +14,7 @@ public class EstatisticasService : IEstatisticasService
 
     public Estatistica EstatisticasEmUmMinuto()
     {
-        var transacoes = _transacaoService.ObterTransacoes();
+        var transacoes = _transacaoService.ObterTransacoesNoUltimoMinuto();
         var estatisticas = new Estatistica()
         {
             Count = transacoes.Count,
@@ -23,7 +23,6 @@ public class EstatisticasService : IEstatisticasService
             Avg = transacoes.Average(t => t.Valor),
             Min = transacoes.Min(t => t.Valor),
         };
-
         return estatisticas;
     }
 }

@@ -38,8 +38,10 @@ namespace desafio_itau.Aplicacao.Servicos.Transacoes;
             Transacoes.Remove(transacao);
         }
 
-        public List<Transacao> ObterTransacoes()
+        public List<Transacao> ObterTransacoesNoUltimoMinuto()
         {
-            return Transacoes.ToList();
+            var ultimasTransacoes = Transacoes
+                .FindAll(t => (DateTime.Now - t.DataHora).TotalMinutes <= 60 && (DateTime.Now - t.DataHora).TotalMinutes >= 0);
+            return ultimasTransacoes;
         }
     }

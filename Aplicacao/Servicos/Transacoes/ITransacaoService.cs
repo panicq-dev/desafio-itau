@@ -5,5 +5,5 @@ public interface ITransacaoService
 {
     public bool Transferir(Transacao transacao);
     public void DeletarTransacao(Transacao transacao);
-    public List<Transacao> ObterTransacoes();
+    public List<Transacao> ObterTransacoesNoUltimoMinuto();
 }
