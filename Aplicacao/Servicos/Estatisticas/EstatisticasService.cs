@@ -12,17 +12,21 @@ public class EstatisticasService : IEstatisticasService
         _transacaoService = transacaoService;
     }
 
-    public Estatistica ObterEstatisticasDaUltimaHora()
+    public Estatistica ObterEstatisticasDoUltimoMinuto()
     {
-        var transacoesDaUltimaHora = _transacaoService.ObterTransacoesNaUltimaHora();
-        var estatisticasDaUltimaHora = new Estatistica()
+        var transacoesDoUltimoMinuto = _transacaoService.ObterTransacoesDoUltimoMinuto();
+        if (transacoesDoUltimoMinuto.Count == 0)
         {
-            Count = transacoesDaUltimaHora.Count,
-            Sum = transacoesDaUltimaHora.Sum(transacao => transacao.Valor),
-            Max = transacoesDaUltimaHora.Max(transacao => transacao.Valor),
-            Avg = transacoesDaUltimaHora.Average(transacao => transacao.Valor),
-            Min = transacoesDaUltimaHora.Min(transacao => transacao.Valor),
+            return new Estatistica();
+        }
+
+        return new Estatistica
+        {
+            Count = transacoesDoUltimoMinuto.Count,
+            Sum = transacoesDoUltimoMinuto.Sum(transacao => transacao.Valor!.Value),
+            Max = transacoesDoUltimoMinuto.Max(transacao => transacao.Valor!.Value),
+            Avg = transacoesDoUltimoMinuto.Average(transacao => transacao.Valor!.Value),
+            Min = transacoesDoUltimoMinuto.Min(transacao => transacao.Valor!.Value),
         };
-        return estatisticasDaUltimaHora;
     }
 }

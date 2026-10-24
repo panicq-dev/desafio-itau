@@ -5,7 +5,7 @@ using DesafioItau.Domain.Models;
 namespace DesafioItau.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("estatistica")]
     public class EstatisticaController : ControllerBase
     {
         private readonly IEstatisticasService _estatisticasService;
@@ -15,11 +15,11 @@ namespace DesafioItau.API.Controllers
             _estatisticasService = estatisticasService;
         }
 
-        [HttpGet("estatistica")]
-        public ActionResult<Estatistica> ObterEstatisticasDaUltimaHora()
+        [HttpGet]
+        public ActionResult<Estatistica> ObterEstatisticasDoUltimoMinuto()
         {
-            var estatisticasDaUltimaHora = _estatisticasService.ObterEstatisticasDaUltimaHora();
-            return Ok(estatisticasDaUltimaHora);
+            var estatisticasDoUltimoMinuto = _estatisticasService.ObterEstatisticasDoUltimoMinuto();
+            return Ok(estatisticasDoUltimoMinuto);
         }
     }
 }

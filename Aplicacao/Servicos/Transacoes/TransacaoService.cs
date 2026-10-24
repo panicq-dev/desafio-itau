@@ -1,28 +1,30 @@
-using Microsoft.AspNetCore.Mvc;
-using System;
 using System.ComponentModel.DataAnnotations;
 using DesafioItau.Domain.Models;
 
 namespace DesafioItau.Aplicacao.Servicos.Transacoes;
 
-    public class TransacaoService : ITransacaoService
-    {
-        public static List<Transacao> TransacoesRegistradas = new List<Transacao>();
-        
+public class TransacaoService : ITransacaoService
+{
+    private readonly List<Transacao> _transacoesRegistradas = [];
+    private readonly Lock _lock = new();
+
     public bool Transferir(Transacao transacao)
     {
         try
         {
-            
             Validator.ValidateObject(transacao, new ValidationContext(transacao), validateAllProperties: true);
-            
-            if (transacao.DataHora > DateTime.Now)
+
+            if (transacao.DataHora!.Value > DateTimeOffset.UtcNow)
             {
-                return false; 
+                return false;
             }
 
-            TransacoesRegistradas.Add(transacao);
-            return true; 
+            lock (_lock)
+            {
+                _transacoesRegistradas.Add(transacao);
+            }
+
+            return true;
         }
         catch (ValidationException)
         {
@@ -30,19 +32,23 @@ namespace DesafioItau.Aplicacao.Servicos.Transacoes;
         }
     }
 
-        public void DeletarTransacao(Transacao transacao)
+    public void LimparTransacoes()
+    {
+        lock (_lock)
         {
-            if (!TransacoesRegistradas.Contains(transacao))
-            {
-                throw new ArgumentException("A transação não existe na lista.");
-            }
-            TransacoesRegistradas.Remove(transacao);
-        }
-
-        public List<Transacao> ObterTransacoesNaUltimaHora()
-        {
-            var transacoesDaUltimaHora = TransacoesRegistradas
-                .FindAll(transacao => (DateTime.Now - transacao.DataHora).TotalMinutes <= 60 && (DateTime.Now - transacao.DataHora).TotalMinutes >= 0);
-            return transacoesDaUltimaHora;
+            _transacoesRegistradas.Clear();
         }
     }
+
+    public List<Transacao> ObterTransacoesDoUltimoMinuto()
+    {
+        var limite = DateTimeOffset.UtcNow.AddSeconds(-60);
+
+        lock (_lock)
+        {
+            return _transacoesRegistradas
+                .Where(transacao => transacao.DataHora!.Value >= limite)
+                .ToList();
+        }
+    }
+}
