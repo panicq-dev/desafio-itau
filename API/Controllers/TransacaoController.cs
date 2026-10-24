@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using desafio_itau.Aplicacao.Servicos.Transacoes;
-using desafio_itau.Domain._Models;
-namespace desafio_itau.API.Controllers;
+using DesafioItau.Aplicacao.Servicos.Transacoes;
+using DesafioItau.Domain.Models;
+
+namespace DesafioItau.API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
@@ -18,8 +19,8 @@ public class TransacaoController : ControllerBase
     public IActionResult RealizarTransacao([FromBody] Transacao transacao)
     {
         
-        var transferencia = _transacaoService.Transferir(transacao);
-        if (!transferencia) return UnprocessableEntity("Por favor, insira um objeto válido."); // Erro 422.
+        var transacaoValida = _transacaoService.Transferir(transacao);
+        if (!transacaoValida) return UnprocessableEntity("Por favor, insira um objeto válido."); // Erro 422.
         if (transacao is null) return BadRequest("O valor está nulo. Por favor, informar valores necessários."); // Erro 400
         return CreatedAtAction(nameof(RealizarTransacao), transacao); // Status 201 Created
     }

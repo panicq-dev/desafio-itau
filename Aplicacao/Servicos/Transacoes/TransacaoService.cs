@@ -1,12 +1,13 @@
-using desafio_itau.Domain._Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel.DataAnnotations;
-namespace desafio_itau.Aplicacao.Servicos.Transacoes;
+using DesafioItau.Domain.Models;
+
+namespace DesafioItau.Aplicacao.Servicos.Transacoes;
 
     public class TransacaoService : ITransacaoService
     {
-        public static List<Transacao> Transacoes = new List<Transacao>();
+        public static List<Transacao> TransacoesRegistradas = new List<Transacao>();
         
     public bool Transferir(Transacao transacao)
     {
@@ -20,7 +21,7 @@ namespace desafio_itau.Aplicacao.Servicos.Transacoes;
                 return false; 
             }
 
-            Transacoes.Add(transacao);
+            TransacoesRegistradas.Add(transacao);
             return true; 
         }
         catch (ValidationException)
@@ -31,17 +32,17 @@ namespace desafio_itau.Aplicacao.Servicos.Transacoes;
 
         public void DeletarTransacao(Transacao transacao)
         {
-            if (!Transacoes.Contains(transacao))
+            if (!TransacoesRegistradas.Contains(transacao))
             {
                 throw new ArgumentException("A transação não existe na lista.");
             }
-            Transacoes.Remove(transacao);
+            TransacoesRegistradas.Remove(transacao);
         }
 
-        public List<Transacao> ObterTransacoesNoUltimoMinuto()
+        public List<Transacao> ObterTransacoesNaUltimaHora()
         {
-            var ultimasTransacoes = Transacoes
-                .FindAll(t => (DateTime.Now - t.DataHora).TotalMinutes <= 60 && (DateTime.Now - t.DataHora).TotalMinutes >= 0);
-            return ultimasTransacoes;
+            var transacoesDaUltimaHora = TransacoesRegistradas
+                .FindAll(transacao => (DateTime.Now - transacao.DataHora).TotalMinutes <= 60 && (DateTime.Now - transacao.DataHora).TotalMinutes >= 0);
+            return transacoesDaUltimaHora;
         }
     }

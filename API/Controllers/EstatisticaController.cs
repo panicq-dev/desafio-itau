@@ -1,16 +1,25 @@
+using DesafioItau.Aplicacao.Servicos.Estatisticas;
 using Microsoft.AspNetCore.Mvc;
-using desafio_itau.Domain._Models;
-namespace desafio_itau.API.Controllers
+using DesafioItau.Domain.Models;
+
+namespace DesafioItau.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
     public class EstatisticaController : ControllerBase
     {
-        [HttpGet("estatistica")]
-        public ActionResult<Estatistica> ObterEstatistica(List<Transacao> transacoes)
+        private readonly IEstatisticasService _estatisticasService;
+
+        public EstatisticaController(IEstatisticasService estatisticasService)
         {
-            
-            return Ok(new Estatistica());
+            _estatisticasService = estatisticasService;
+        }
+
+        [HttpGet("estatistica")]
+        public ActionResult<Estatistica> ObterEstatisticasDaUltimaHora()
+        {
+            var estatisticasDaUltimaHora = _estatisticasService.ObterEstatisticasDaUltimaHora();
+            return Ok(estatisticasDaUltimaHora);
         }
     }
 }

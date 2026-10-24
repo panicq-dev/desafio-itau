@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-namespace desafio_itau.Domain._Models;
+namespace DesafioItau.Domain.Models;
 
 public class Transacao
 {

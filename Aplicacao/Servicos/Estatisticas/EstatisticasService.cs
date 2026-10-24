@@ -1,7 +1,7 @@
-using desafio_itau.Aplicacao.Servicos.Transacoes;
-using desafio_itau.Domain._Models;
+using DesafioItau.Aplicacao.Servicos.Transacoes;
+using DesafioItau.Domain.Models;
 
-namespace desafio_itau.Aplicacao.Servicos.Estatisticas;
+namespace DesafioItau.Aplicacao.Servicos.Estatisticas;
 
 public class EstatisticasService : IEstatisticasService
 {
@@ -12,17 +12,17 @@ public class EstatisticasService : IEstatisticasService
         _transacaoService = transacaoService;
     }
 
-    public Estatistica EstatisticasEmUmMinuto()
+    public Estatistica ObterEstatisticasDaUltimaHora()
     {
-        var transacoes = _transacaoService.ObterTransacoesNoUltimoMinuto();
-        var estatisticas = new Estatistica()
+        var transacoesDaUltimaHora = _transacaoService.ObterTransacoesNaUltimaHora();
+        var estatisticasDaUltimaHora = new Estatistica()
         {
-            Count = transacoes.Count,
-            Sum = transacoes.Sum(t => t.Valor),
-            Max = transacoes.Max(t => t.Valor),
-            Avg = transacoes.Average(t => t.Valor),
-            Min = transacoes.Min(t => t.Valor),
+            Count = transacoesDaUltimaHora.Count,
+            Sum = transacoesDaUltimaHora.Sum(transacao => transacao.Valor),
+            Max = transacoesDaUltimaHora.Max(transacao => transacao.Valor),
+            Avg = transacoesDaUltimaHora.Average(transacao => transacao.Valor),
+            Min = transacoesDaUltimaHora.Min(transacao => transacao.Valor),
         };
-        return estatisticas;
+        return estatisticasDaUltimaHora;
     }
 }

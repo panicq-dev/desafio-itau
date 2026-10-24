@@ -1,7 +1,8 @@
-using desafio_itau.Domain._Models;
-namespace desafio_itau.Aplicacao.Servicos.Estatisticas;
+using DesafioItau.Domain.Models;
+
+namespace DesafioItau.Aplicacao.Servicos.Estatisticas;
 
 public interface IEstatisticasService
 {
-    public Estatistica EstatisticasEmUmMinuto();
+    public Estatistica ObterEstatisticasDaUltimaHora();
 }
