@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/gabriel/Documentos/desafio-itau/DesafioItau.api.csproj": {}
+    "/home/gabriel/RiderProjects/desafio-itau/DesafioItau.api.csproj": {}
   },
   "projects": {
-    "/home/gabriel/Documentos/desafio-itau/DesafioItau.api.csproj": {
+    "/home/gabriel/RiderProjects/desafio-itau/DesafioItau.api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/gabriel/Documentos/desafio-itau/DesafioItau.api.csproj",
+        "projectUniqueName": "/home/gabriel/RiderProjects/desafio-itau/DesafioItau.api.csproj",
         "projectName": "DesafioItau.api",
-        "projectPath": "/home/gabriel/Documentos/desafio-itau/DesafioItau.api.csproj",
+        "projectPath": "/home/gabriel/RiderProjects/desafio-itau/DesafioItau.api.csproj",
         "packagesPath": "/home/gabriel/.nuget/packages/",
-        "outputPath": "/home/gabriel/Documentos/desafio-itau/obj/",
+        "outputPath": "/home/gabriel/RiderProjects/desafio-itau/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/gabriel/.nuget/NuGet/NuGet.Config"

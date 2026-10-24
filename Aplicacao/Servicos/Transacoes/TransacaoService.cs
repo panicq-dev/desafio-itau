@@ -6,7 +6,7 @@ namespace desafio_itau.Aplicacao.Servicos.Transacoes;
 
     public class TransacaoService : ITransacaoService
     {
-        private List<Transacao> transacoes = new List<Transacao>();
+        public static List<Transacao> Transacoes = new List<Transacao>();
         
     public bool Transferir(Transacao transacao)
     {
@@ -20,7 +20,7 @@ namespace desafio_itau.Aplicacao.Servicos.Transacoes;
                 return false; 
             }
 
-            transacoes.Add(transacao);
+            Transacoes.Add(transacao);
             return true; 
         }
         catch (ValidationException)
@@ -31,10 +31,15 @@ namespace desafio_itau.Aplicacao.Servicos.Transacoes;
 
         public void DeletarTransacao(Transacao transacao)
         {
-            if (!transacoes.Contains(transacao))
+            if (!Transacoes.Contains(transacao))
             {
                 throw new ArgumentException("A transação não existe na lista.");
             }
-            transacoes.Remove(transacao);
+            Transacoes.Remove(transacao);
+        }
+
+        public List<Transacao> ObterTransacoes()
+        {
+            return Transacoes.ToList();
         }
     }

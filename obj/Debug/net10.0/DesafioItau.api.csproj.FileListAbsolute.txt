@@ -31,3 +31,15 @@
 /home/gabriel/Documentos/desafio-itau/obj/Debug/net10.0/DesafioItau.api.pdb
 /home/gabriel/Documentos/desafio-itau/obj/Debug/net10.0/DesafioItau.api.genruntimeconfig.cache
 /home/gabriel/Documentos/desafio-itau/obj/Debug/net10.0/ref/DesafioItau.api.dll
+/home/gabriel/RiderProjects/desafio-itau/obj/Debug/net10.0/DesafioItau.api.csproj.AssemblyReference.cache
+/home/gabriel/RiderProjects/desafio-itau/obj/Debug/net10.0/rpswa.dswa.cache.json
+/home/gabriel/RiderProjects/desafio-itau/obj/Debug/net10.0/DesafioItau.api.GeneratedMSBuildEditorConfig.editorconfig
+/home/gabriel/RiderProjects/desafio-itau/obj/Debug/net10.0/DesafioItau.api.AssemblyInfoInputs.cache
+/home/gabriel/RiderProjects/desafio-itau/obj/Debug/net10.0/DesafioItau.api.AssemblyInfo.cs
+/home/gabriel/RiderProjects/desafio-itau/obj/Debug/net10.0/DesafioItau.api.csproj.CoreCompileInputs.cache
+/home/gabriel/RiderProjects/desafio-itau/obj/Debug/net10.0/DesafioItau.api.MvcApplicationPartsAssemblyInfo.cs
+/home/gabriel/RiderProjects/desafio-itau/obj/Debug/net10.0/DesafioItau.api.MvcApplicationPartsAssemblyInfo.cache
+/home/gabriel/RiderProjects/desafio-itau/obj/Debug/net10.0/DesafioItau.api.sourcelink.json
+/home/gabriel/RiderProjects/desafio-itau/obj/Debug/net10.0/DesafioItau.api.dll
+/home/gabriel/RiderProjects/desafio-itau/obj/Debug/net10.0/refint/DesafioItau.api.dll
+/home/gabriel/RiderProjects/desafio-itau/obj/Debug/net10.0/DesafioItau.api.pdb
