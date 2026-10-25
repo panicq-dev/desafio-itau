@@ -10,4 +10,12 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.12" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="TestesDesafioItau/**/*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="TestesDesafioItau\TestesDesafioItau.csproj" />
+  </ItemGroup>
+
 </Project>

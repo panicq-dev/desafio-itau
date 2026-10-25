@@ -88,11 +88,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/gabriel/RiderProjects/desafio-itau/DesafioItau.api.csproj",
+      "projectUniqueName": "/home/gabriel/RiderProjects/itau/DesafioItau.api.csproj",
       "projectName": "DesafioItau.api",
-      "projectPath": "/home/gabriel/RiderProjects/desafio-itau/DesafioItau.api.csproj",
+      "projectPath": "/home/gabriel/RiderProjects/itau/DesafioItau.api.csproj",
       "packagesPath": "/home/gabriel/.nuget/packages/",
-      "outputPath": "/home/gabriel/RiderProjects/desafio-itau/obj/",
+      "outputPath": "/home/gabriel/RiderProjects/itau/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/gabriel/.nuget/NuGet/NuGet.Config"

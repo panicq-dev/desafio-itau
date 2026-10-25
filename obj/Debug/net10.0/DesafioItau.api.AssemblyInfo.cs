@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DesafioItau.api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4da92258f66ba0dacd336ecbc2abccab12666827")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+60b7fd1a99046a35ce0fa4ad95135f7b0b7ec344")]
 [assembly: System.Reflection.AssemblyProductAttribute("DesafioItau.api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DesafioItau.api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
