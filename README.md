@@ -1,9 +1,15 @@
-## Itaú Unibanco - Desafio Back-End
+# Itaú Unibanco — Desafio Back-End
+
 Este repositório faz parte de um projeto pessoal em que recrio desafios técnicos antigos de grandes empresas para estudar e praticar. Aqui, o desafio recriado é o de back-end do Itaú Unibanco, aplicado há alguns anos.
+
+**Continuação do projeto:** este repositório possui uma continuação dedicada exclusivamente à implementação de testes unitários, desenvolvida para validar as regras de negócio, o tratamento de entradas inválidas e os comportamentos esperados das funcionalidades implementadas.
+
+Acesse o repositório complementar: [**xUnitDesafioItau — Testes Unitários**](https://github.com/panicq-dev/xunit-desafio-itau).
 
 ---
 
 ## 1. Introdução
+
 Sua missão, caso você aceite, é criar uma API REST que recebe Transações e retorna Estatísticas sob essas transações. Para este desafio, a API deve ser criada utilizando-se de Java ou Kotlin e Spring Boot.
 
 Um bom lugar para se começar é o [Spring Initializr](https://start.spring.io/).
@@ -13,9 +19,11 @@ Um bom lugar para se começar é o [Spring Initializr](https://start.spring.io/)
 ---
 
 ## 2. Definição do desafio
+
 Neste desafio você deve criar uma API REST no GitHub ou GitLab. Leia com atenção todas as instruções a seguir!
 
 ### 2.1. Restrições Técnicas
+
 Seu projeto:
 
 - **DEVE** estar no GitHub ou GitLab.
@@ -33,9 +41,11 @@ Seu projeto:
 ---
 
 ### 2.2. Endpoints da API
+
 A seguir serão especificados os endpoints que devem estar presentes na sua API e a funcionalidade esperada de cada um deles.
 
 #### 2.2.1. Receber Transações: `POST /transacao`
+
 Este é o endpoint que irá receber as Transações. Cada transação consiste de um `valor` e uma `dataHora` de quando ela aconteceu:
 
 ```json
@@ -55,26 +65,31 @@ Os campos no JSON acima significam o seguinte:
 > **Dica:** O Spring Boot, por padrão, consegue compreender datas no padrão ISO 8601 sem problemas. Experimente utilizar um atributo do tipo `OffsetDateTime`!
 
 A API só aceitará transações que:
+
 1. Tenham os campos `valor` e `dataHora` preenchidos.
 2. A transação **NÃO DEVE** acontecer no futuro (deve ter acontecido a qualquer momento no passado).
 3. A transação **NÃO DEVE** ter valor negativo (deve ter valor igual ou maior que 0).
 
 **Como resposta, espera-se que este endpoint responda com:**
-* **`201 Created`** sem nenhum corpo: A transação foi aceita (ou seja foi validada, está válida e foi registrada).
-* **`422 Unprocessable Entity`** sem nenhum corpo: A transação não foi aceita por qualquer motivo (1 ou mais critérios de aceite não foram atendidos, por exemplo: valor menor que 0).
-* **`400 Bad Request`** sem nenhum corpo: A API não compreendeu a requisição do cliente (por exemplo: um JSON inválido).
+
+- **`201 Created`** sem nenhum corpo: A transação foi aceita (ou seja foi validada, está válida e foi registrada).
+- **`422 Unprocessable Entity`** sem nenhum corpo: A transação não foi aceita por qualquer motivo (1 ou mais critérios de aceite não foram atendidos, por exemplo: valor menor que 0).
+- **`400 Bad Request`** sem nenhum corpo: A API não compreendeu a requisição do cliente (por exemplo: um JSON inválido).
 
 ---
 
 #### 2.2.2. Limpar Transações: `DELETE /transacao`
+
 Este endpoint simplesmente apaga todos os dados de transações que estejam armazenados.
 
 **Como resposta, espera-se que este endpoint responda com:**
-* **`200 OK`** sem nenhum corpo: Todas as informações foram apagadas com sucesso.
+
+- **`200 OK`** sem nenhum corpo: Todas as informações foram apagadas com sucesso.
 
 ---
 
 #### 2.2.3. Calcular Estatísticas: `GET /estatistica`
+
 Este endpoint deve retornar estatísticas das transações que aconteceram nos últimos 60 segundos (1 minuto). As estatísticas que devem ser calculadas são:
 
 ```json
@@ -100,13 +115,15 @@ Os campos no JSON acima significam o seguinte:
 > **Dica:** Há um objeto no Java 8+ chamado `DoubleSummaryStatistics` que pode lhe ajudar ou servir de inspiração.
 
 **Como resposta, espera-se que este endpoint responda com:**
-* **`200 OK`** com os dados das estatísticas (um JSON com os campos `count`, `sum`, `avg`, `min` e `max` todos preenchidos com seus respectivos valores).
+
+- **`200 OK`** com os dados das estatísticas (um JSON com os campos `count`, `sum`, `avg`, `min` e `max` todos preenchidos com seus respectivos valores).
 
 > **Atenção!** Quando **não houverem** transações nos últimos 60 segundos, considere todos os valores como `0` (zero).
 
 ---
 
-## 4. Extras
+## 3. Extras
+
 Vamos propor a seguir alguns desafios extras caso você queira testar seus conhecimentos ao máximo! Nenhum desses requisitos é obrigatório, mas são desejados e podem ser um diferencial:
 
 1. **Testes automatizados:** Sejam unitários e/ou funcionais, testes automatizados são importantes e ajudam a evitar problemas no futuro. Atente-se à efetividade dos seus testes (testar apenas os "caminhos felizes" não é muito efetivo).
